@@ -53,8 +53,8 @@ mVideoView.setMediaController(mMediaController);
 
 用支付宝，扫下面二维码领红包
 
-![Alt text](https://github.com/Visen123/MyShortVideo/master/Screensshots/hb01.png)
+![Alt text](https://github.com/Visen123/ShortVideo/master/Screensshots/hb01.png)
 
 如果你觉得我分享的这个Dmeo还不错，请扫下面二维码，随意打赏，鼓励一下，谢谢支持！
 
-![Alt text](https://github.com/Visen123/MyShortVideo/master/Screenshots/hb02.png)
+![Alt text](https://github.com/Visen123/ShortVideo/master/Screenshots/hb02.png)
