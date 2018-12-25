@@ -34,6 +34,7 @@ public class ShortVideoctivity extends VideoPlayerBaseActivity {
 
     private boolean mIsLiveStreaming=true;
     private LinearLayout loadingView;
+   //TODO 视频路径
     String videoPath = "https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200f1b0000bgg8h1j2ap9fhu4m5ajg&line=10";
 
     @Override
