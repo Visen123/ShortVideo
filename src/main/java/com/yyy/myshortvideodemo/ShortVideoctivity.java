@@ -14,7 +14,6 @@ import com.pili.pldroid.player.PLOnInfoListener;
 import com.pili.pldroid.player.PLOnVideoFrameListener;
 import com.pili.pldroid.player.PLOnVideoSizeChangedListener;
 import com.pili.pldroid.player.widget.PLVideoView;
-import com.yyy.myshortvideodemo.utils.Config;
 import com.yyy.myshortvideodemo.utils.Utils;
 import com.yyy.myshortvideodemo.widget.MediaController;
 import com.yyy.myshortvideodemo.widget.MediaController.OnClickSpeedAdjustListener;
@@ -33,8 +32,9 @@ public class ShortVideoctivity extends VideoPlayerBaseActivity {
     //private TextView mStatInfoTextView;
     private MediaController mMediaController;
 
-    private boolean mIsLiveStreaming;
+    private boolean mIsLiveStreaming=true;
     private LinearLayout loadingView;
+    String videoPath = "https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200f1b0000bgg8h1j2ap9fhu4m5ajg&line=10";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,47 +44,15 @@ public class ShortVideoctivity extends VideoPlayerBaseActivity {
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        String videoPath = "https://aweme.snssdk.com/aweme/v1/playwm/?video_id=v0200f1b0000bgg8h1j2ap9fhu4m5ajg&line=10";
-        mIsLiveStreaming = true;
-
-
         mVideoView = findViewById(R.id.VideoView);
-
         loadingView = findViewById(R.id.LoadingView);
         mVideoView.setBufferingIndicator(loadingView);
 
-      /*  View mCoverView = findViewById(R.id.CoverView);
-        mVideoView.setCoverView(mCoverView);
-*/
-        //mStatInfoTextView = findViewById(R.id.StatInfoTextView);
-
-        // 1 -> hw codec enable, 0 -> disable [recommended]
-        int codec = getIntent().getIntExtra("mediaCodec", AVOptions.MEDIA_CODEC_SW_DECODE);
         AVOptions options = new AVOptions();
-        // the unit of timeout is ms
         options.setInteger(AVOptions.KEY_PREPARE_TIMEOUT, 10 * 1000);
-        // 1 -> hw codec enable, 0 -> disable [recommended]
-        options.setInteger(AVOptions.KEY_MEDIACODEC, codec);
-        options.setInteger(AVOptions.KEY_LIVE_STREAMING, mIsLiveStreaming ? 1 : 0);
-        boolean disableLog = getIntent().getBooleanExtra("disable-log", false);
-//        options.setString(AVOptions.KEY_DNS_SERVER, "127.0.0.1");
-        options.setInteger(AVOptions.KEY_LOG_LEVEL, disableLog ? 5 : 0);
-        boolean cache = getIntent().getBooleanExtra("cache", false);
-        if (!mIsLiveStreaming && cache) {
-            options.setString(AVOptions.KEY_CACHE_DIR, Config.DEFAULT_CACHE_DIR);
-        }
-        boolean vcallback = getIntent().getBooleanExtra("video-data-callback", false);
-        if (vcallback) {
-            options.setInteger(AVOptions.KEY_VIDEO_DATA_CALLBACK, 1);
-        }
-        boolean acallback = getIntent().getBooleanExtra("audio-data-callback", false);
-        if (acallback) {
-            options.setInteger(AVOptions.KEY_AUDIO_DATA_CALLBACK, 1);
-        }
-        if (!mIsLiveStreaming) {
-            int startPos = getIntent().getIntExtra("start-pos", 0);
-            options.setInteger(AVOptions.KEY_START_POSITION, startPos * 1000);
-        }
+        options.setInteger(AVOptions.KEY_MEDIACODEC, AVOptions.MEDIA_CODEC_SW_DECODE);
+        options.setInteger(AVOptions.KEY_LIVE_STREAMING, 1 );
+        options.setInteger(AVOptions.KEY_LOG_LEVEL, 0);
         mVideoView.setAVOptions(options);
 
         // Set some listeners
@@ -131,31 +99,6 @@ public class ShortVideoctivity extends VideoPlayerBaseActivity {
 
     }
 
-/*
-    public void onClickSwitchScreen(View v) {
-        mDisplayAspectRatio = (mDisplayAspectRatio + 1) % 5;
-        mVideoView.setDisplayAspectRatio(mDisplayAspectRatio);
-        switch (mVideoView.getDisplayAspectRatio()) {
-            case PLVideoView.ASPECT_RATIO_ORIGIN:
-                Utils.showToastTips(this, "Origin mode");
-                break;
-            case PLVideoView.ASPECT_RATIO_FIT_PARENT:
-                Utils.showToastTips(this, "Fit parent !");
-                break;
-            case PLVideoView.ASPECT_RATIO_PAVED_PARENT:
-                Utils.showToastTips(this, "Paved parent !");
-                break;
-            case PLVideoView.ASPECT_RATIO_16_9:
-                Utils.showToastTips(this, "16 : 9 !");
-                break;
-            case PLVideoView.ASPECT_RATIO_4_3:
-                Utils.showToastTips(this, "4 : 3 !");
-                break;
-            default:
-                break;
-        }
-    }
-*/
 
     private PLOnInfoListener mOnInfoListener = new PLOnInfoListener() {
         @Override
