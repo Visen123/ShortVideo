@@ -1,0 +1,38 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.3'
+
+    defaultConfig {
+        applicationId "com.yyy.myshortvideodemo"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        buildConfigField "long", "BUILD_TIMESTAMP", System.currentTimeMillis() + "L"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['src/main/jniLibs']
+        }
+    }
+
+
+}
+
+dependencies {
+    implementation files('libs/pldroid-player-2.1.6.jar')
+    implementation 'com.bugsnag:bugsnag-android-ndk:1.1.2'
+    implementation 'com.android.support:appcompat-v7:27.1.0'
+    implementation 'com.journeyapps:zxing-android-embedded:3.0.2@aar'
+    implementation 'com.google.zxing:core:3.2.0'
+}
