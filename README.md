@@ -50,14 +50,3 @@ mVideoView.setLooping(true);
 mMediaController = new MediaController(this, !mIsLiveStreaming, mIsLiveStreaming);
 mMediaController.setOnClickSpeedAdjustListener(mOnClickSpeedAdjustListener);
 mVideoView.setMediaController(mMediaController);
-
-最后附上效果图：
-
-![Alt text](https://github.com/Visen123/ShortVideo/raw/master/Screenshosts/hb03.png)
-
-用支付宝，扫下面二维码领红包
-
-![Alt text](https://github.com/Visen123/ShortVideo/raw/master/Screenshosts/hb01.png)
-
-
-
